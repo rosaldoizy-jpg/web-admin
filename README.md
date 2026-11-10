@@ -43,6 +43,7 @@ The repository includes `render.yaml`, which describes one Node web service (ser
 2. In Render, choose **New → Blueprint** and connect the repository containing `render.yaml`.
 3. When prompted, provide `SEED_ADMIN_EMAIL` and a strong `SEED_ADMIN_PASSWORD`. Render generates `JWT_SECRET` and `DEVICE_API_KEY` and connects `DATABASE_URL` to the provisioned database.
 4. Deploy. Render builds with `npm ci --include=dev && npm run build`, starts with `npm start`, and checks `/api/health`. The service URL serves the UI; its `/api` routes reach the same server.
+
 5. For a deployed ESP32, point it at `https://YOUR-SERVICE.onrender.com/api/telemetry` and copy the generated `DEVICE_API_KEY` from the Render dashboard into the sketch. The local example uses HTTP; for Render, configure the ESP32 HTTP client for HTTPS with certificate validation.
 
-The Blueprint uses Render's Free plans for a no-cost demo. Free web services can sleep after 15 minutes without requests, and Free Postgres expires 30 days after creation. Upgrade the database to a paid plan before storing data you need to keep. [Render free plan limits](https://render.com/docs/free).
+The Blueprint places the service and database in Singapore and uses Render's Free plans for a no-cost demo. Free web services can sleep after 15 minutes without requests, and Free Postgres expires 30 days after creation. Upgrade the database to a paid plan before storing data you need to keep. [Render free plan limits](https://render.com/docs/free).
