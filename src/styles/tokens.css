@@ -1,0 +1,28 @@
+/* FreshSpin brand palette — single source of truth. No hex codes inside components. */
+:root {
+  --navy:       #164E63;
+  --navy-hover: #0F3A4B;
+  --blue:       #8ED8F8;
+  --blue-soft:  #D3EFFC;
+  --page:       #EAF8FE;
+  --white:      #FFFFFF;
+  --text-muted: #5B7C8A;
+  --border:     #D6E6EE;
+  --search:      #EAF7FC;
+  --purple:      #7C3AED;
+  --purple-bg:   #EDE9FE;
+
+  /* status only: badges, alerts, errors */
+  --success:    #16A34A;
+  --success-bg: #DCFCE7;
+  --warning:    #D97706;
+  --warning-bg: #FEF3C7;
+  --danger:     #DC2626;
+  --danger-bg:  #FEE2E2;
+
+  --shadow-card: 0 2px 10px rgba(22, 78, 99, 0.08);
+  --shadow-pop:  0 8px 24px rgba(22, 78, 99, 0.16);
+
+  --transition: 160ms ease;
+  --focus-ring: 0 0 0 3px rgba(142, 216, 248, 0.6);
+}

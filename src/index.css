@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+@import "./styles/tokens.css";
+@import "tailwindcss";
+
+/* Only show tall-screen-only decorations when the viewport is high enough */
+@custom-variant tall (@media (min-height: 800px));
+
+@theme {
+  --radius-2xl: 1.25rem; /* 20px FreshSpin cards */
+  --font-sans: 'Poppins', system-ui, sans-serif;
+}
+
+@theme {
+  --color-navy: #164E63;
+  --color-navy-hover: #0F3A4B;
+  --color-brand-light: #8ED8F8;
+  --color-brand-soft: #D3EFFC;
+  --color-brand-tint: #EAF8FE;
+  --color-brand-tintstrong: #D3EFFC;
+  --color-page: #EAF8FE;
+  --color-line: #D6E6EE;
+  --color-search: #EAF7FC;
+  --color-accent-purple: #7C3AED;
+  --color-accent-purple-bg: #EDE9FE;
+  --color-ink-secondary: #5B7C8A;
+  --color-success: #16A34A;
+  --color-success-bg: #DCFCE7;
+  --color-warning: #D97706;
+  --color-warning-bg: #FEF3C7;
+  --color-danger: #DC2626;
+  --color-danger-bg: #FEE2E2;
+}
+
+@layer base {
+  body {
+    font-family: 'Poppins', 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: var(--page);
+    color: var(--navy);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Outfit', system-ui, sans-serif;
+    color: var(--navy);
+  }
+  ::selection {
+    background: var(--blue-soft);
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 6px;
+  }
+}
+
+/* Decorative script accent (sidebar footer only — never body text) */
+.font-script {
+  font-family: 'Caveat', cursive;
+}
+
+/* Gentle float for decorative bubbles only */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float-slow {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+/* Custom Animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(142, 216, 248, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 5px rgba(142, 216, 248, 0.2);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--blue-soft);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
+}
+
+/* ── Reports: screen-hidden document, printed via Print / Export PDF ─────── */
+/* Only the portal copy (direct child of body) stays hidden on screen —
+   the copy inside the Preview modal must remain visible. */
+body > .print-doc {
+  display: none;
+}
+.print-doc table {
+  page-break-inside: auto;
+}
+.print-doc tr {
+  page-break-inside: avoid;
+}
+.print-doc thead {
+  display: table-header-group;
+}
+.print-doc section {
+  page-break-inside: avoid;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  /* Only the report document is printed (other pages print normally) */
+  body:has(> .print-doc) #root {
+    display: none !important;
+  }
+  body:has(> .print-doc) .print-hide {
+    display: none !important;
+  }
+  .print-doc {
+    display: block !important;
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: #164E63;
+    background: #ffffff;
+  }
+  body {
+    background: #ffffff !important;
+  }
+}
